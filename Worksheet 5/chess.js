@@ -92,6 +92,7 @@ class Game{
     }
 
     deadPiece(pieza){
+        this.mostrarTablero()
         try{
             var equipo=pieza.charAt(0);
             var pog=pieza.substr(1);
@@ -402,7 +403,7 @@ class Game{
                             this.turno='N';
                             this.actualizar(pos,+8,aux);
                         }else{
-                            if(tab.tablero[pos+8].name.charAt(0)=='N' && isDown()){
+                            if(tab.tablero[pos+8].name.charAt(0)=='N' && this.isDown()){
                                 this.turno='N';
                                 this.actualizar(pos,+8,aux);
                                 Negras.Piezas--;
@@ -1243,3 +1244,36 @@ tab.mostrarTablero();
 Blancas=new Player('Blanco');
 Negras=new Player('Negro');
 
+tab.moverPeonBlanco(8);
+tab.moverPeonNegro(8);
+tab.moverPeonBlanco(8);
+tab.moverPeonNegro(8);
+tab.moverTorreBlanco(2,'arriba',2);
+tab.moverTorreNegro(2,'abajo',2);
+tab.moverTorreBlanco(2,'izquierda',20);
+tab.moverTorreNegro(2,'izquierda',6);
+tab.moverTorreBlanco(2,'arriba',4);
+tab.moverTorreNegro(2,'izquierda',1);
+tab.moverTorreBlanco(2,'derecha',1);
+tab.moverTorreNegro(2,'abajo',4);
+tab.moverTorreBlanco(2,'derecha',1);
+tab.moverTorreNegro(2,'derecha',1);
+tab.moverTorreBlanco(2,'derecha',1);
+tab.moverTorreNegro(2,'derecha',1);
+tab.moverTorreBlanco(2,'derecha',1);
+tab.moverTorreNegro(2,'derecha',1);
+tab.moverTorreBlanco(2,'derecha',1);
+tab.moverTorreNegro(2,'derecha',1);
+tab.moverTorreBlanco(2,'derecha',1);
+tab.moverTorreNegro(2,'derecha',1);
+tab.moverTorreBlanco(2,'derecha',1);
+tab.moverTorreNegro(2,'derecha',1);
+tab.moverTorreBlanco(2,'abajo',3);
+tab.moverTorreNegro(2,'derecha',1);
+tab.moverTorreBlanco(2,'izquierda',1);
+tab.moverTorreNegro(2,'arriba',5);
+tab.moverTorreBlanco(2,'abajo',5);
+tab.moverTorreNegro(2,'arriba',3);
+tab.moverTorreBlanco(2,'derecha',1);
+tab.moverTorreNegro(2,'arriba',3);
+tab.moverTorreBlanco(2,'abajo',1);
