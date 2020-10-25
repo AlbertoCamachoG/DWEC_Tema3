@@ -117,11 +117,289 @@ class Game{
         }catch(error){}
     }
 
+    removeOtherButton(){
+        var btt = document.getElementById("torre1");
+        if(btt) btt.remove();
+        btt = document.getElementById("torre2");
+        if(btt) btt.remove();
+
+        var btt = document.getElementById("caballo1");
+        if(btt) btt.remove();
+        btt = document.getElementById("caballo2");
+        if(btt) btt.remove();
+
+        var btt = document.getElementById("alfil1");
+        if(btt) btt.remove();
+        btt = document.getElementById("alfil2");
+        if(btt) btt.remove();
+
+        var btt = document.getElementById("rey");
+        if(btt) btt.remove();
+        btt = document.getElementById("reina");
+        if(btt) btt.remove();
+
+        var btt = document.getElementById("peon1");
+        if(btt) btt.remove();
+        btt = document.getElementById("peon2");
+        if(btt) btt.remove();
+        var btt = document.getElementById("peon3");
+        if(btt) btt.remove();
+        btt = document.getElementById("peon4");
+        if(btt) btt.remove();
+        var btt = document.getElementById("peon5");
+        if(btt) btt.remove();
+        btt = document.getElementById("peon6");
+        if(btt) btt.remove();
+        var btt = document.getElementById("peon7");
+        if(btt) btt.remove();
+        btt = document.getElementById("peon8");
+        if(btt) btt.remove();
+
+        var btt = document.getElementById("back");
+        if(btt) btt.remove();
+    }
+
+    removeButton(){
+        var btt = document.getElementById("controller");
+        if(btt) btt.remove();
+        btt = document.getElementById("br");
+        if(btt) btt.remove();
+        btt = document.getElementById("torre");
+        if(btt) btt.remove();
+        btt = document.getElementById("caballo");
+        if(btt) btt.remove();
+        btt = document.getElementById("alfil");
+        if(btt) btt.remove();
+        btt = document.getElementById("rey");
+        if(btt) btt.remove();
+        btt = document.getElementById("reina");
+        if(btt) btt.remove();
+        btt = document.getElementById("peon");
+        if(btt) btt.remove();
+    }
+
+    mostrarBotones(){
+        var turno=this.turno;
+        this.removeButton();
+        document.write("<br id='br'><button id='torre'>Mover Torre</button>");
+        var btt = document.getElementById("torre");
+        if(btt)btt.addEventListener("click",function(){tab.mostrarTorre(turno)});
+
+        document.write("<button id='caballo'>Mover Caballo</button>");
+        var btt = document.getElementById("caballo");
+        if(btt)btt.addEventListener("click",function(){tab.mostrarCaballo(turno)});
+
+        document.write("<button id='alfil'>Mover Alfil</button>");
+        var btt = document.getElementById("alfil");
+        if(btt)btt.addEventListener("click",function(){tab.mostrarAlfil(turno)});
+        
+        document.write("<button id='rey'>Mover Rey</button>");
+        var btt = document.getElementById("rey");
+        if(btt)btt.addEventListener("click",function(){tab.mostrarRey(turno)});
+        
+        document.write("<button id='reina'>Mover Reina</button>");
+        var btt = document.getElementById("reina");
+        if(btt)btt.addEventListener("click",function(){tab.mostrarReina(turno)});
+        
+        document.write("<button id='peon'>Mover Peon</button>");
+        var btt = document.getElementById("peon");
+        if(btt)btt.addEventListener("click",function(){tab.mostrarPeon(turno)});
+    }
+
+    mostrarTorre(turno){
+        this.removeButton();
+        document.write("<br id='br'><button id='torre1'>Mover Torre 1</button>");
+        var btt = document.getElementById("torre1");
+        if(turno=='N'){
+            if(btt)btt.addEventListener("click",function(){tab.moverTorreNegro(1,prompt("En que direccion te quieres mover"),parseInt(prompt("Cuantas casillas")))});
+        }
+        if(turno=='B'){
+            if(btt)btt.addEventListener("click",function(){tab.moverTorreBlanco(1,prompt("En que direccion te quieres mover"),parseInt(prompt("Cuantas casillas")))});
+        }
+
+        document.write("<button id='torre2'>Mover Torre 2</button>");
+        btt = document.getElementById("torre2");
+        if(turno=='N'){
+            if(btt)btt.addEventListener("click",function(){tab.moverTorreNegro(2,prompt("En que direccion te quieres mover"),parseInt(prompt("Cuantas casillas")))});
+        }
+        if(turno=='B'){
+            if(btt)btt.addEventListener("click",function(){tab.moverTorreBlanco(2,prompt("En que direccion te quieres mover"),parseInt(prompt("Cuantas casillas")))});
+        }
+
+        document.write("<button id='back'>Volver</button>");
+        var btt = document.getElementById("back");
+        if(btt)btt.addEventListener("click",function(){tab.removeOtherButton();tab.mostrarBotones();});
+
+    }
+    mostrarCaballo(turno){
+        this.removeButton();
+        document.write("<br id='br'><button id='caballo1'>Mover Caballo 1</button>");
+        var btt = document.getElementById("caballo1");
+        if(turno=='N'){
+            if(btt)btt.addEventListener("click",function(){tab.moverCaballoNegro(1,prompt("En que direccion te quieres mover 2 casillas"),prompt("En que direccion te quieres mover 1 casilla"))});
+        }
+        if(turno=='B'){
+            if(btt)btt.addEventListener("click",function(){tab.moverCaballoBlanco(1,prompt("En que direccion te quieres mover 2 casillas"),prompt("En que direccion te quieres mover 1 casilla"))});
+        }
+
+        document.write("<button id='caballo2'>Mover Caballo 2</button>");
+        btt = document.getElementById("caballo2");
+        if(turno=='N'){
+            if(btt)btt.addEventListener("click",function(){tab.moverCaballoNegro(2,prompt("En que direccion te quieres mover 2 casillas"),prompt("En que direccion te quieres mover 1 casilla"))});
+        }
+        if(turno=='B'){
+            if(btt)btt.addEventListener("click",function(){tab.moverCaballoBlanco(2,prompt("En que direccion te quieres mover 2 casillas"),prompt("En que direccion te quieres mover 1 casilla"))});
+        }
+        document.write("<button id='back'>Volver</button>");
+        var btt = document.getElementById("back");
+        if(btt)btt.addEventListener("click",function(){tab.removeOtherButton();tab.mostrarBotones();});
+    }
+    mostrarAlfil(turno){
+        this.removeButton();
+        document.write("<br id='br'><button id='alfil1'>Mover Alfil 1</button>");
+        var btt = document.getElementById("alfil1");
+        if(turno=='N'){
+            if(btt)btt.addEventListener("click",function(){tab.moverAlfilNegro(1,prompt("En que direccion te quieres mover(arribaD,abajoI,etc)"),parseInt(prompt("Cuantas casillas")))});
+        }
+        if(turno=='B'){
+            if(btt)btt.addEventListener("click",function(){tab.moverAlfilBlanco(1,prompt("En que direccion te quieres mover(arribaD,abajoI,etc)"),parseInt(prompt("Cuantas casillas")))});
+        }
+
+        document.write("<button id='alfil2'>Mover Alfil 2</button>");
+        btt = document.getElementById("alfil2");
+        if(turno=='N'){
+            if(btt)btt.addEventListener("click",function(){tab.moverAlfilNegro(2,prompt("En que direccion te quieres mover(arribaD,abajoI,etc)"),parseInt(prompt("Cuantas casillas")))});
+        }
+        if(turno=='B'){
+            if(btt)btt.addEventListener("click",function(){tab.moverAlfilBlanco(2,prompt("En que direccion te quieres mover(arribaD,abajoI,etc)"),parseInt(prompt("Cuantas casillas")))});
+        }
+        document.write("<button id='back'>Volver</button>");
+        var btt = document.getElementById("back");
+        if(btt)btt.addEventListener("click",function(){tab.removeOtherButton();tab.mostrarBotones();});
+    }
+    mostrarRey(turno){
+        this.removeButton();
+        document.write("<br id='br'><button id='rey'>Mover Rey</button>");
+        var btt = document.getElementById("rey");
+        if(turno=='N'){
+            if(btt)btt.addEventListener("click",function(){tab.moverReyNegro(prompt("En que direccion te quieres mover(arribaD,abajoI,derecha,etc)"))});
+        }
+        if(turno=='B'){
+            if(btt)btt.addEventListener("click",function(){tab.moverReyBlanco(prompt("En que direccion te quieres mover(arribaD,abajoI,derecha,etc)"))});
+        }
+        document.write("<button id='back'>Volver</button>");
+        var btt = document.getElementById("back");
+        if(btt)btt.addEventListener("click",function(){tab.removeOtherButton();tab.mostrarBotones();});
+    }
+    mostrarReina(turno){
+        this.removeButton();
+        document.write("<br id='br'><button id='reina'>Mover Reina</button>");
+        var btt = document.getElementById("reina");
+        if(turno=='N'){
+            if(btt)btt.addEventListener("click",function(){tab.moverReinaNegro(prompt("En que direccion te quieres mover(arribaD,abajoI,derecha,etc)"),parseInt(prompt("Cuantas casillas")))});
+        }
+        if(turno=='B'){
+            if(btt)btt.addEventListener("click",function(){tab.moverReinaBlanco(prompt("En que direccion te quieres mover(arribaD,abajoI,etc)"),parseInt(prompt("Cuantas casillas")))});
+        }
+        document.write("<button id='back'>Volver</button>");
+        var btt = document.getElementById("back");
+        if(btt)btt.addEventListener("click",function(){tab.removeOtherButton();tab.mostrarBotones();});
+    }
+    mostrarPeon(turno){
+        this.removeButton();
+        document.write("<br id='br'><button id='peon1'>Mover Peon 1</button>");
+        var btt = document.getElementById("peon1");
+        if(turno=='N'){
+            if(btt)btt.addEventListener("click",function(){tab.moverPeonNegro(1)});
+        }
+        if(turno=='B'){
+            if(btt)btt.addEventListener("click",function(){tab.moverPeonBlanco(1)});
+        }
+
+        document.write("<button id='peon2'>Mover Peon 2</button>");
+        btt = document.getElementById("peon2");
+        if(turno=='N'){
+            if(btt)btt.addEventListener("click",function(){tab.moverPeonNegro(2)});
+        }
+        if(turno=='B'){
+            if(btt)btt.addEventListener("click",function(){tab.moverPeonBlanco(2)});
+        }
+
+        document.write("<button id='peon3'>Mover Peon 3</button>");
+        btt = document.getElementById("peon3");
+        if(turno=='N'){
+            if(btt)btt.addEventListener("click",function(){tab.moverPeonNegro(3)});
+        }
+        if(turno=='B'){
+            if(btt)btt.addEventListener("click",function(){tab.moverPeonBlanco(3)});
+        }
+
+        document.write("<button id='peon4'>Mover Peon 4</button>");
+        btt = document.getElementById("peon4");
+        if(turno=='N'){
+            if(btt)btt.addEventListener("click",function(){tab.moverPeonNegro(4)});
+        }
+        if(turno=='B'){
+            if(btt)btt.addEventListener("click",function(){tab.moverPeonBlanco(4)});
+        }
+        
+        document.write("<button id='peon5'>Mover Peon 5</button>");
+        btt = document.getElementById("peon5");
+        if(turno=='N'){
+            if(btt)btt.addEventListener("click",function(){tab.moverPeonNegro(5)});
+        }
+        if(turno=='B'){
+            if(btt)btt.addEventListener("click",function(){tab.moverPeonBlanco(5)});
+        }
+
+        document.write("<button id='peon6'>Mover Peon 6</button>");
+        btt = document.getElementById("peon6");
+        if(turno=='N'){
+            if(btt)btt.addEventListener("click",function(){tab.moverPeonNegro(6)});
+        }
+        if(turno=='B'){
+            if(btt)btt.addEventListener("click",function(){tab.moverPeonBlanco(6)});
+        }
+
+        document.write("<button id='peon7'>Mover Peon 7</button>");
+        btt = document.getElementById("peon7");
+        if(turno=='N'){
+            if(btt)btt.addEventListener("click",function(){tab.moverPeonNegro(7)});
+        }
+        if(turno=='B'){
+            if(btt)btt.addEventListener("click",function(){tab.moverPeonBlanco(7)});
+        }
+
+        document.write("<button id='peon8'>Mover Peon 8</button>");
+        btt = document.getElementById("peon8");
+        if(turno=='N'){
+            if(btt)btt.addEventListener("click",function(){tab.moverPeonNegro(8)});
+        }
+        if(turno=='B'){
+            if(btt)btt.addEventListener("click",function(){tab.moverPeonBlanco(8)});
+        }
+        document.write("<button id='back'>Volver</button>");
+        var btt = document.getElementById("back");
+        if(btt)btt.addEventListener("click",function(){tab.removeOtherButton();tab.mostrarBotones();});
+    }
+
     actualizar(pos,num,aux){
+        this.removeButton();
+        this.removeOtherButton();
         this.deadPiece(tab.tablero[pos+num].name);
         tab.tablero[pos]=[];
         tab.tablero[pos+num]=aux;
         this.mostrarTablero();
+        if(this.turno=='B'){
+            document.write("<br id='br'><button id='controller'>Mover Blancas</button>");
+            var btt = document.getElementById("controller");
+            if(btt)btt.addEventListener("click",function(){tab.mostrarBotones()});
+        }
+        if(this.turno=='N'){
+            document.write("<br id='br'><button id='controller'>Mover Negras</button>");
+            var btt = document.getElementById("controller");
+            if(btt)btt.addEventListener("click",function(){tab.mostrarBotones()});
+        }
     }
 
     isLeft(pos){
@@ -1243,37 +1521,3 @@ tab.inicializar();
 tab.mostrarTablero();
 Blancas=new Player('Blanco');
 Negras=new Player('Negro');
-
-tab.moverPeonBlanco(8);
-tab.moverPeonNegro(8);
-tab.moverPeonBlanco(8);
-tab.moverPeonNegro(8);
-tab.moverTorreBlanco(2,'arriba',2);
-tab.moverTorreNegro(2,'abajo',2);
-tab.moverTorreBlanco(2,'izquierda',20);
-tab.moverTorreNegro(2,'izquierda',6);
-tab.moverTorreBlanco(2,'arriba',4);
-tab.moverTorreNegro(2,'izquierda',1);
-tab.moverTorreBlanco(2,'derecha',1);
-tab.moverTorreNegro(2,'abajo',4);
-tab.moverTorreBlanco(2,'derecha',1);
-tab.moverTorreNegro(2,'derecha',1);
-tab.moverTorreBlanco(2,'derecha',1);
-tab.moverTorreNegro(2,'derecha',1);
-tab.moverTorreBlanco(2,'derecha',1);
-tab.moverTorreNegro(2,'derecha',1);
-tab.moverTorreBlanco(2,'derecha',1);
-tab.moverTorreNegro(2,'derecha',1);
-tab.moverTorreBlanco(2,'derecha',1);
-tab.moverTorreNegro(2,'derecha',1);
-tab.moverTorreBlanco(2,'derecha',1);
-tab.moverTorreNegro(2,'derecha',1);
-tab.moverTorreBlanco(2,'abajo',3);
-tab.moverTorreNegro(2,'derecha',1);
-tab.moverTorreBlanco(2,'izquierda',1);
-tab.moverTorreNegro(2,'arriba',5);
-tab.moverTorreBlanco(2,'abajo',5);
-tab.moverTorreNegro(2,'arriba',3);
-tab.moverTorreBlanco(2,'derecha',1);
-tab.moverTorreNegro(2,'arriba',3);
-tab.moverTorreBlanco(2,'abajo',1);
