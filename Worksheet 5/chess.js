@@ -176,6 +176,8 @@ class Game{
         if(btt) btt.remove();
         btt = document.getElementById("peon");
         if(btt) btt.remove();
+        btt = document.getElementById("Cpeon");
+        if(btt) btt.remove();
     }
 
     mostrarBotones(){
@@ -204,6 +206,10 @@ class Game{
         document.write("<button id='peon'>Mover Peon</button>");
         var btt = document.getElementById("peon");
         if(btt)btt.addEventListener("click",function(){tab.mostrarPeon(turno)});
+
+        document.write("<button id='Cpeon'>Comer Peon</button>");
+        var btt = document.getElementById("Cpeon");
+        if(btt)btt.addEventListener("click",function(){tab.comerPeon(turno)});
     }
 
     mostrarTorre(turno){
@@ -383,6 +389,84 @@ class Game{
         if(btt)btt.addEventListener("click",function(){tab.removeOtherButton();tab.mostrarBotones();});
     }
 
+    comerPeon(turno){
+        this.removeButton();
+        document.write("<br id='br'><button id='peon1'>Peon 1</button>");
+        var btt = document.getElementById("peon1");
+        if(turno=='N'){
+            if(btt)btt.addEventListener("click",function(){tab.comerPeonNegro(1,prompt('izquierda o derecha'))});
+        }
+        if(turno=='B'){
+            if(btt)btt.addEventListener("click",function(){tab.comerPeonBlanco(1,prompt('izquierda o derecha'))});
+        }
+
+        document.write("<button id='peon2'>Peon 2</button>");
+        btt = document.getElementById("peon2");
+        if(turno=='N'){
+            if(btt)btt.addEventListener("click",function(){tab.comerPeonNegro(2,prompt('izquierda o derecha'))});
+        }
+        if(turno=='B'){
+            if(btt)btt.addEventListener("click",function(){tab.comerPeonBlanco(2,prompt('izquierda o derecha'))});
+        }
+
+        document.write("<button id='peon3'>Peon 3</button>");
+        btt = document.getElementById("peon3");
+        if(turno=='N'){
+            if(btt)btt.addEventListener("click",function(){tab.comerPeonNegro(3,prompt('izquierda o derecha'))});
+        }
+        if(turno=='B'){
+            if(btt)btt.addEventListener("click",function(){tab.comerPeonBlanco(3,prompt('izquierda o derecha'))});
+        }
+
+        document.write("<button id='peon4'>Peon 4</button>");
+        btt = document.getElementById("peon4");
+        if(turno=='N'){
+            if(btt)btt.addEventListener("click",function(){tab.comerPeonNegro(4,prompt('izquierda o derecha'))});
+        }
+        if(turno=='B'){
+            if(btt)btt.addEventListener("click",function(){tab.comerPeonBlanco(4,prompt('izquierda o derecha'))});
+        }
+        
+        document.write("<button id='peon5'>Peon 5</button>");
+        btt = document.getElementById("peon5");
+        if(turno=='N'){
+            if(btt)btt.addEventListener("click",function(){tab.comerPeonNegro(5,prompt('izquierda o derecha'))});
+        }
+        if(turno=='B'){
+            if(btt)btt.addEventListener("click",function(){tab.comerPeonBlanco(5,prompt('izquierda o derecha'))});
+        }
+
+        document.write("<button id='peon6'>Peon 6</button>");
+        btt = document.getElementById("peon6");
+        if(turno=='N'){
+            if(btt)btt.addEventListener("click",function(){tab.comerPeonNegro(6,prompt('izquierda o derecha'))});
+        }
+        if(turno=='B'){
+            if(btt)btt.addEventListener("click",function(){tab.comerPeonBlanco(6,prompt('izquierda o derecha'))});
+        }
+
+        document.write("<button id='peon7'>Peon 7</button>");
+        btt = document.getElementById("peon7");
+        if(turno=='N'){
+            if(btt)btt.addEventListener("click",function(){tab.comerPeonNegro(7,prompt('izquierda o derecha'))});
+        }
+        if(turno=='B'){
+            if(btt)btt.addEventListener("click",function(){tab.comerPeonBlanco(7,prompt('izquierda o derecha'))});
+        }
+
+        document.write("<button id='peon8'>Peon 8</button>");
+        btt = document.getElementById("peon8");
+        if(turno=='N'){
+            if(btt)btt.addEventListener("click",function(){tab.comerPeonNegro(8,prompt('izquierda o derecha'))});
+        }
+        if(turno=='B'){
+            if(btt)btt.addEventListener("click",function(){tab.comerPeonBlanco(8,prompt('izquierda o derecha'))});
+        }
+        document.write("<button id='back'>Volver</button>");
+        var btt = document.getElementById("back");
+        if(btt)btt.addEventListener("click",function(){tab.removeOtherButton();tab.mostrarBotones();});
+    }
+
     actualizar(pos,num,aux){
         this.removeButton();
         this.removeOtherButton();
@@ -438,13 +522,45 @@ class Game{
         return false;
     }
 
+    cambiarPeon(equipo,pos){
+        try{
+            var pieza="";//prompt('Que pieza quieres intercambiar(Reina,Torre,Alfil,Caballo)');
+            if(pieza.charAt(0).toLowerCase==pieza.charAt(0)){
+                pieza=pieza.charAt(0).toUpperCase+pieza.substr(1);
+            }
+        }catch(error){}
+        if(equipo=='N'){
+            switch(pieza){
+                case 'Reina':if(Negras.Reina=false)this.tablero[pos]=new Reina('NReina');break;
+                case 'Alfil':if(Negras.Alfil1=false){this.tablero[pos]=new Alfil('NAlfil1')}else{if(Negras.Alfil2=false){this.tablero[pos]=new Reina('NAlfil2')}};break;
+                case 'Torre':if(Negras.Torre1=false){this.tablero[pos]=new Torre('NTorre1')}else{if(Negras.Torre2=false){this.tablero[pos]=new Torre('NTorre2')}};break;
+                case 'Caballo':if(Negras.Caballo1=false){this.tablero[pos]=new Caballo('NCaballo1')}else{if(Negras.Caballo2=false){this.tablero[pos]=new Caballo('NCaballo2')}};break;
+                default: alert('Datos Incorrectos');cambiarPeon(equipo,pos);
+            }
+        }
+        if(equipo=='B'){
+            switch(pieza){
+                case 'Reina':if(Blancas.Reina=false)this.tablero[pos]=new Reina('BReina');break;
+                case 'Alfil':if(Blancas.Alfil1=false){this.tablero[pos]=new Alfil('BAlfil1')}else{if(Blancas.Alfil2=false){this.tablero[pos]=new Alfil('BAlfil2')}};break;
+                case 'Torre':if(Blancas.Torre1=false){this.tablero[pos]=new Torre('BTorre1')}else{if(Blancas.Torre2=false){this.tablero[pos]=new Torre('BTorre2')}};break;
+                case 'Caballo':if(Blancas.Caballo1=false){this.tablero[pos]=new Caballo('BCaballo1')}else{if(Blancas.Caballo2=false){this.tablero[pos]=new Caballo('BCaballo2')}};break;
+                default: alert("Datos Incorrectos");cambiarPeon(equipo,pos);
+            }
+        }
+        
+    }
+
     moverPeonNegro(num){
         if(this.turno=='N'){
             var nombre='NPeon'+num;
             var pos=getPiece(nombre);
             var aux=tab.tablero[pos];
             console.log(tab.tablero[pos+8]);
-            if(tab.tablero[pos+8]==""){this.turno='B';this.actualizar(pos,+8,aux);}else{console.log('Esa direccion esta ocupada')}
+            if(tab.tablero[pos+8]==""){
+                this.turno='B';this.actualizar(pos,+8,aux);
+                console.log(pos);
+                if(!this.isDown(pos+8))this.cambiarPeon('N',pos+8);
+            }else{console.log('Esa direccion esta ocupada')}
         }else{console.log("No es tu turno")}
     }
 
@@ -460,12 +576,14 @@ class Game{
                         this.actualizar(pos,+7,aux);
                         Blancas.Piezas--;
                         console.log("Equipo Blanco: "+Blancas.Piezas+" restantes");
+                        if(!this.isDown(pos+7))this.cambiarPeon('N',pos+7);
                     };break;
                     case 'derecha':if( tab.tablero[pos+9].name.charAt(0)=="B" && this.isRight){
                         this.turno='B';
                         this.actualizar(pos,+9,aux);
                         Blancas.Piezas--;
                         console.log("Equipo Blanco: "+Blancas.Piezas+" restantes");
+                        if(!this.isDown(pos+9)){this.cambiarPeon('N',pos+9);}
                     };
                 }
             }catch(error){console.log("No hay nada para comer")}
@@ -477,7 +595,10 @@ class Game{
             var nombre='BPeon'+num;
             var pos=getPiece(nombre);
             var aux=tab.tablero[pos];
-            if(tab.tablero[pos-8]==""){this.turno='N';this.actualizar(pos,-8,aux);}else{console.log('Esa direccion esta ocupada')}
+            if(tab.tablero[pos-8]==""){
+                this.turno='N';this.actualizar(pos,-8,aux);
+                if(!this.isUp(pos-8)){this.cambiarPeon('B',pos-8)};
+            }else{console.log('Esa direccion esta ocupada')}
         }else{console.log("No es tu turno")}
     }
 
@@ -493,12 +614,14 @@ class Game{
                         this.actualizar(pos,-9,aux);
                         Negras.Piezas--;
                         console.log('Equipo Negro: '+Negras.Piezas+' restantes');
+                        if(!this.isUp(pos-9)){this.cambiarPeon('B',pos-9)};
                     };break;
                     case 'derecha':if( tab.tablero[pos-7].name.charAt(0)=="N" && this.isRight){
                         this.turno='N';
                         this.actualizar(pos,-7,aux);
                         Negras.Piezas--;
                         console.log('Equipo Negro: '+Negras.Piezas+' restantes');
+                        if(!this.isUp(pos-7)){this.cambiarPeon('B',pos-7)};
                     };
                 }
             }catch(error){console.log("No hay nada para comer")}
@@ -1446,7 +1569,7 @@ class Game{
         }else{console.log("No es tu turno")}
     }
 }
-/*Controla los jugadores*/
+/*Controla los jugadores y sus piezas*/
 class Player{
     constructor(equipo){
         this.equipo=equipo;
@@ -1521,3 +1644,7 @@ tab.inicializar();
 tab.mostrarTablero();
 Blancas=new Player('Blanco');
 Negras=new Player('Negro');
+
+document.write("<br id='br'><button id='controller'>Mover Blancas</button>");
+var btt = document.getElementById("controller");
+if(btt)btt.addEventListener("click",function(){tab.mostrarTablero();tab.mostrarBotones();});
