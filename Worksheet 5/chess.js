@@ -134,13 +134,27 @@ class Game{
             return true;
         return false;
     }
+
     isRight(pos){
         if(pos!=7 && pos!=15 && pos!=23 && pos!=31 && pos!=39 && pos!=47 && pos!=55 && pos!=63)
             return true;
         return false;
     }
+
     isRight1(pos){
         if(this.pos!=6 && pos!=14 && pos!=22 && pos!=30 && pos!=38 && pos!=46 && pos!=54 && pos!=62)
+            return true;
+        return false;
+    }
+
+    isUp(pos){
+        if(this.pos!=0 && pos!=1 && pos!=2 && pos!=3 && pos!=4 && pos!=5 && pos!=6 && pos!=7)
+            return true;
+        return false;
+    }
+
+    isDown(pos){
+        if(this.pos!=56 && pos!=57 && pos!=58 && pos!=59 && pos!=60 && pos!=61 && pos!=62 && pos!=63)
             return true;
         return false;
     }
@@ -214,17 +228,18 @@ class Game{
 
     moverAlfilBlanco(num,direccion,pasos){
         if(this.turno=='B'){
-            this.turno='N';
             var nombre='BAlfil'+num;
             for(var i=0;i<pasos;i++){
                 var pos=getPiece(nombre);
                 var aux=tab.tablero[pos];
                     try{
                     switch (direccion){
-                        case 'arribaI':if(tab.tablero[pos-9]=="" && this.isLeft(pos)){
+                        case 'arribaI':if(tab.tablero[pos-9]=="" && this.isLeft(pos) && this.isUp()){
+                            this.turno='N';
                             this.actualizar(pos,-9,aux);
                         }else{
-                            if(tab.tablero[pos-9].name.charAt(0)=='N' && this.isLeft(pos)){
+                            if(tab.tablero[pos-9].name.charAt(0)=='N' && this.isLeft(pos) && this.isUp()){
+                                this.turno='N';
                                 this.actualizar(pos,-9,aux);
                                 Negras.Piezas--;
                                 console.log('Equipo Negro: '+Negras.Piezas+' restantes');
@@ -232,10 +247,12 @@ class Game{
                                 break;
                             }else{console.log("No puedes realizar ese movimiento")}
                         };break;
-                        case 'arribaD':if(tab.tablero[pos-7]=="" && this.isRight(pos)){
+                        case 'arribaD':if(tab.tablero[pos-7]=="" && this.isRight(pos) && this.isUp()){
+                            this.turno='N';
                             this.actualizar(pos,-7,aux);
                         }else{
-                            if(tab.tablero[pos-7].name.charAt(0)=='N' && this.isRight(pos)){
+                            if(tab.tablero[pos-7].name.charAt(0)=='N' && this.isRight(pos) && this.isUp()){
+                                this.turno='N';
                                 this.actualizar(pos,-7,aux);
                                 Negras.Piezas--;
                                 console.log('Equipo Negro: '+Negras.Piezas+' restantes');
@@ -243,10 +260,12 @@ class Game{
                                 break;
                             }
                         };break;
-                        case 'abajoI':if(tab.tablero[pos+7]=="" && this.isLeft(pos)){
+                        case 'abajoI':if(tab.tablero[pos+7]=="" && this.isLeft(pos) && this.isDown()){
+                            this.turno='N';
                             this.actualizar(pos,+7,aux);
                         }else{
-                            if(tab.tablero[pos+7].name.charAt(0)=='N' && this.isLeft(pos)){
+                            if(tab.tablero[pos+7].name.charAt(0)=='N' && this.isLeft(pos) && this.isDown()){
+                                this.turno='N';
                                 this.actualizar(pos,+7,aux);
                                 Negras.Piezas--;
                                 console.log('Equipo Negro: '+Negras.Piezas+' restantes');
@@ -254,10 +273,12 @@ class Game{
                                 break;
                             }else{console.log("No puedes realizar ese movimiento")}
                         };break;
-                        case 'abajoD':if(tab.tablero[pos+7]=="" && this.isRight(pos)){
+                        case 'abajoD':if(tab.tablero[pos+7]=="" && this.isRight(pos) && this.isDown()){
+                            this.turno='N';
                             this.actualizar(pos,+9,aux);
                         }else{
-                            if(tab.tablero[pos+9].name.charAt(0)=='N' && this.isRight(pos)){
+                            if(tab.tablero[pos+9].name.charAt(0)=='N' && this.isRight(pos) && this.isDown()){
+                                this.turno='N';
                                 this.actualizar(pos,+9,aux);
                                 Negras.Piezas--;
                                 console.log('Equipo Negro: '+Negras.Piezas+' restantes');
@@ -332,17 +353,18 @@ class Game{
 
     moverTorreBlanco(num,direccion,pasos){
         if(this.turno=='B'){
-            this.turno='N';
             var nombre='BTorre'+num;
             for(var i=0;i<pasos;i++){
                 var pos=getPiece(nombre);
                 var aux=tab.tablero[pos];
                     try{
                     switch (direccion){
-                        case 'arriba':if(tab.tablero[pos-8]==""){
+                        case 'arriba':if(tab.tablero[pos-8]=="" && this.isUp()){
+                            this.turno='N';
                             this.actualizar(pos,-8,aux);
                         }else{
-                            if(tab.tablero[pos-8].name.charAt(0)=='N'){
+                            if(tab.tablero[pos-8].name.charAt(0)=='N' && this.isUp()){
+                                this.turno='N';
                                 this.actualizar(pos,-8,aux);
                                 Negras.Piezas--;
                                 console.log('Equipo Negro: '+Negras.Piezas+' restantes');
@@ -351,9 +373,11 @@ class Game{
                             }else{console.log("No puedes realizar ese movimiento")}
                         };break;
                         case 'izquierda':if(tab.tablero[pos-1]=="" && this.isLeft(pos)){
+                            this.turno='N';
                             this.actualizar(pos,-1,aux);
                         }else{
                             if(tab.tablero[pos-1].name.charAt(0)=='N' && this.isLeft(pos)){
+                                this.turno='N';
                                 this.actualizar(pos,-1,aux);
                                 Negras.Piezas--;
                                 console.log('Equipo Negro: '+Negras.Piezas+' restantes');
@@ -362,9 +386,11 @@ class Game{
                             }
                         };break;
                         case 'derecha':if(tab.tablero[pos+1]=="" && this.isRight(pos)){
+                            this.turno='N';
                             this.actualizar(pos,+1,aux);
                         }else{
                             if(tab.tablero[pos+1].name.charAt(0)=='N' && this.isRight(pos)){
+                                this.turno='N';
                                 this.actualizar(pos,+1,aux);
                                 Negras.Piezas--;
                                 console.log('Equipo Negro: '+Negras.Piezas+' restantes');
@@ -372,10 +398,12 @@ class Game{
                                 break;
                             }else{console.log("No puedes realizar ese movimiento")}
                         };break;
-                        case 'abajo':if(tab.tablero[pos+8]==""){
+                        case 'abajo':if(tab.tablero[pos+8]=="" && this.isDown()){
+                            this.turno='N';
                             this.actualizar(pos,+8,aux);
                         }else{
-                            if(tab.tablero[pos+8].name.charAt(0)=='N'){
+                            if(tab.tablero[pos+8].name.charAt(0)=='N' && isDown()){
+                                this.turno='N';
                                 this.actualizar(pos,+8,aux);
                                 Negras.Piezas--;
                                 console.log('Equipo Negro: '+Negras.Piezas+' restantes');
@@ -391,17 +419,18 @@ class Game{
 
     moverTorreNegro(num,direccion,pasos){
         if(this.turno=='N'){
-            this.turno='B';
             var nombre='NTorre'+num;
             for(var i=0;i<pasos;i++){
                 var pos=getPiece(nombre);
                 var aux=tab.tablero[pos];
                     try{
                     switch (direccion){
-                        case 'arriba':if(tab.tablero[pos-8]==""){
+                        case 'arriba':if(tab.tablero[pos-8]=="" && this.isUp()){
+                            this.turno='B';
                             this.actualizar(pos,-8,aux);
                         }else{
-                            if(tab.tablero[pos-8].name.charAt(0)=='B'){
+                            if(tab.tablero[pos-8].name.charAt(0)=='B' && this.isUp()){
+                                this.turno='B';
                                 this.actualizar(pos,-8,aux);
                                 Blancas.Piezas--;
                                 console.log("Equipo Blanco: "+Blancas.Piezas+" restantes");
@@ -410,9 +439,11 @@ class Game{
                             }else{console.log("No puedes realizar ese movimiento")}
                         };break;
                         case 'izquierda':if(tab.tablero[pos-1]=="" && this.isLeft(pos)){
+                            this.turno='B';
                             this.actualizar(pos,-1,aux);
                         }else{
                             if(tab.tablero[pos-1].name.charAt(0)=='B' && this.isLeft(pos)){
+                                this.turno='B';
                                 this.actualizar(pos,-1,aux);
                                 Blancas.Piezas--;
                                 console.log("Equipo Blanco: "+Blancas.Piezas+" restantes");
@@ -421,9 +452,11 @@ class Game{
                             }
                         };break;
                         case 'derecha':if(tab.tablero[pos+1]=="" && this.isRight(pos)){
+                            this.turno='B';
                             this.actualizar(pos,+1,aux);
                         }else{
                             if(tab.tablero[pos+1].name.charAt(0)=='B' && this.isRight(pos)){
+                                this.turno='B';
                                 this.actualizar(pos,+1,aux);
                                 Blancas.Piezas--;
                                 console.log("Equipo Blanco: "+Blancas.Piezas+" restantes");
@@ -431,10 +464,12 @@ class Game{
                                 break;
                             }else{console.log("No puedes realizar ese movimiento")}
                         };break;
-                        case 'abajo':if(tab.tablero[pos+8]==""){
+                        case 'abajo':if(tab.tablero[pos+8]=="" && this.isDown()){
+                            this.turno='B';
                             this.actualizar(pos,+8,aux);
                         }else{
-                            if(tab.tablero[pos+8].name.charAt(0)=='B' && this.isRight(pos)){
+                            if(tab.tablero[pos+8].name.charAt(0)=='B' && this.isDown()){
+                                this.turno='B';
                                 this.actualizar(pos,+8,aux);
                                 Blancas.Piezas--;
                                 console.log("Equipo Blanco: "+Blancas.Piezas+" restantes");
@@ -666,17 +701,18 @@ class Game{
 
     moverReinaNegro(direccion,pasos){
         if(this.turno=='N'){
-            this.turno='B';
             var nombre='NReina';
             for(var i=0;i<pasos;i++){
                 var pos=getPiece(nombre);
                 var aux=tab.tablero[pos];
                     try{
                     switch (direccion){
-                        case 'abajoI':if(tab.tablero[pos+7]=="" && this.isLeft(pos)){
+                        case 'abajoI':if(tab.tablero[pos+7]=="" && this.isLeft(pos) && this.isDown()){
+                            this.turno='B';
                             this.actualizar(pos,+7,aux);
                         }else{
-                            if(tab.tablero[pos+7].name.charAt(0)=='B' && this.isLeft(pos)){
+                            if(tab.tablero[pos+7].name.charAt(0)=='B' && this.isLeft(pos) && this.isDown()){
+                                this.turno='B';
                                 this.actualizar(pos,+7,aux);
                                 Blancas.Piezas--;
                                 console.log("Equipo Blanco: "+Blancas.Piezas+" restantes");
@@ -684,10 +720,12 @@ class Game{
                                 break;
                             }else{console.log("No puedes realizar ese movimiento")}
                         };break;
-                        case 'abajoD':if(tab.tablero[pos+9]=="" && this.isRight(pos)){
+                        case 'abajoD':if(tab.tablero[pos+9]=="" && this.isRight(pos) && this.isDown()){
+                            this.turno='B';
                             this.actualizar(pos,+9,aux);
                         }else{
-                            if(tab.tablero[pos+9].name.charAt(0)=='B' && this.isRight(pos)){
+                            if(tab.tablero[pos+9].name.charAt(0)=='B' && this.isRight(pos) && this.isDown()){
+                                this.turno='B';
                                 this.actualizar(pos,+9,aux);
                                 Blancas.Piezas--;
                                 console.log("Equipo Blanco: "+Blancas.Piezas+" restantes");
@@ -695,10 +733,12 @@ class Game{
                                 break;
                             }else{console.log("No puedes realizar ese movimiento")}
                         };break;
-                        case 'arribaD':if(tab.tablero[pos-7]=="" && this.isRight(pos)){
+                        case 'arribaD':if(tab.tablero[pos-7]=="" && this.isRight(pos) && this.isUp()){
+                            this.turno='B';
                             this.actualizar(pos,-7,aux);
                         }else{
-                            if(tab.tablero[pos-7].name.charAt(0)=='B' && this.isRight(pos)){
+                            if(tab.tablero[pos-7].name.charAt(0)=='B' && this.isRight(pos) && this.isUp()){
+                                this.turno='B';
                                 this.actualizar(pos,-7,aux);
                                 Blancas.Piezas--;
                                 console.log("Equipo Blanco: "+Blancas.Piezas+" restantes");
@@ -706,10 +746,12 @@ class Game{
                                 break;
                             }else{console.log("No puedes realizar ese movimiento")}
                         };break;
-                        case 'arribaI':if(tab.tablero[pos-9]=="" && this.isLeft(pos)){
+                        case 'arribaI':if(tab.tablero[pos-9]=="" && this.isLeft(pos) && this.isUp()){
+                            this.turno='B';
                             this.actualizar(pos,-9,aux);
                         }else{
-                            if(tab.tablero[pos-9].name.charAt(0)=='B' && this.isLeft(pos)){
+                            if(tab.tablero[pos-9].name.charAt(0)=='B' && this.isLeft(pos) && this.isUp()){
+                                this.turno='B';
                                 this.actualizar(pos,-9,aux);
                                 Blancas.Piezas--;
                                 console.log("Equipo Blanco: "+Blancas.Piezas+" restantes");
@@ -717,10 +759,12 @@ class Game{
                                 break;
                             }else{console.log("No puedes realizar ese movimiento")}
                         };break;
-                        case 'arriba':if(tab.tablero[pos-8]==""){
+                        case 'arriba':if(tab.tablero[pos-8]=="" && this.isUp()){
+                            this.turno='B';
                             this.actualizar(pos,-8,aux);
                         }else{
-                            if(tab.tablero[pos-8].name.charAt(0)=='B'){
+                            if(tab.tablero[pos-8].name.charAt(0)=='B' && this.isUp()){
+                                this.turno='B';
                                 this.actualizar(pos,-8,aux);
                                 Blancas.Piezas--;
                                 console.log("Equipo Blanco: "+Blancas.Piezas+" restantes");
@@ -729,9 +773,11 @@ class Game{
                             }else{console.log("No puedes realizar ese movimiento")}
                         };break;
                         case 'izquierda':if(tab.tablero[pos-1]=="" && this.isLeft(pos)){
+                            this.turno='B';
                             this.actualizar(pos,-1,aux);
                         }else{
                             if(tab.tablero[pos-1].name.charAt(0)=='B' && this.isLeft(pos)){
+                                this.turno='B';
                                 this.actualizar(pos,-1,aux);
                                 Blancas.Piezas--;
                                 console.log("Equipo Blanco: "+Blancas.Piezas+" restantes");
@@ -740,9 +786,11 @@ class Game{
                             }
                         };break;
                         case 'derecha':if(tab.tablero[pos+1]=="" && this.isRight(pos)){
+                            this.turno='B';
                             this.actualizar(pos,+1,aux);
                         }else{
                             if(tab.tablero[pos+1].name.charAt(0)=='B' && this.isRight(pos)){
+                                this.turno='B';
                                 this.actualizar(pos,+1,aux);
                                 Blancas.Piezas--;
                                 console.log("Equipo Blanco: "+Blancas.Piezas+" restantes");
@@ -750,10 +798,12 @@ class Game{
                                 break;
                             }else{console.log("No puedes realizar ese movimiento")}
                         };break;
-                        case 'abajo':if(tab.tablero[pos+8]==""){
+                        case 'abajo':if(tab.tablero[pos+8]=="" && this.isDown()){
+                            this.turno='B';
                             this.actualizar(pos,+8,aux);
                         }else{
-                            if(tab.tablero[pos+8].name.charAt(0)=='B'){
+                            if(tab.tablero[pos+8].name.charAt(0)=='B' && this.isDown()){
+                                this.turno='B';
                                 this.actualizar(pos,+8,aux);
                                 Blancas.Piezas--;
                                 console.log("Equipo Blanco: "+Blancas.Piezas+" restantes");
@@ -769,17 +819,18 @@ class Game{
 
     moverReinaBlanco(direccion,pasos){
         if(this.turno=='B'){
-            this.turno='N';
             var nombre='BReina';
             for(var i=0;i<pasos;i++){
                 var pos=getPiece(nombre);
                 var aux=tab.tablero[pos];
                     try{
                     switch (direccion){
-                        case 'abajoI':if(tab.tablero[pos+7]=="" && this.isLeft(pos)){
+                        case 'abajoI':if(tab.tablero[pos+7]=="" && this.isLeft(pos) && this.isDown()){
+                            this.turno='N';
                             this.actualizar(pos,+7,aux);
                         }else{
-                            if(tab.tablero[pos+7].name.charAt(0)=='N' && this.isLeft(pos)){
+                            if(tab.tablero[pos+7].name.charAt(0)=='N' && this.isLeft(pos) && this.isDown()){
+                                this.turno='N';
                                 this.actualizar(pos,+7,aux);
                                 Negras.Piezas--;
                                 console.log('Equipo Negro: '+Negras.Piezas+' restantes');
@@ -787,10 +838,12 @@ class Game{
                                 break;
                             }else{console.log("No puedes realizar ese movimiento")}
                         };break;
-                        case 'abajoD':if(tab.tablero[pos+9]=="" && this.isRight(pos)){
+                        case 'abajoD':if(tab.tablero[pos+9]=="" && this.isRight(pos) && this.isDown()){
+                            this.turno='N';
                             this.actualizar(pos,+9,aux);
                         }else{
-                            if(tab.tablero[pos+9].name.charAt(0)=='N' && this.isRight(pos)){
+                            if(tab.tablero[pos+9].name.charAt(0)=='N' && this.isRight(pos) && this.isDown()){
+                                this.turno='N';
                                 this.actualizar(pos,+9,aux);
                                 Negras.Piezas--;
                                 console.log('Equipo Negro: '+Negras.Piezas+' restantes');
@@ -798,10 +851,12 @@ class Game{
                                 break;
                             }else{console.log("No puedes realizar ese movimiento")}
                         };break;
-                        case 'arribaD':if(tab.tablero[pos-7]=="" && this.isRight(pos)){
+                        case 'arribaD':if(tab.tablero[pos-7]=="" && this.isRight(pos) && this.isUp()){
+                            this.turno='N';
                             this.actualizar(pos,-7,aux);
                         }else{
-                            if(tab.tablero[pos-7].name.charAt(0)=='N' && this.isRight(pos)){
+                            if(tab.tablero[pos-7].name.charAt(0)=='N' && this.isRight(pos) && this.isUp()){
+                                this.turno='N';
                                 this.actualizar(pos,-7,aux);
                                 Negras.Piezas--;
                                 console.log('Equipo Negro: '+Negras.Piezas+' restantes');
@@ -809,10 +864,12 @@ class Game{
                                 break;
                             }else{console.log("No puedes realizar ese movimiento")}
                         };break;
-                        case 'arribaI':if(tab.tablero[pos-9]=="" && this.isLeft(pos)){
+                        case 'arribaI':if(tab.tablero[pos-9]=="" && this.isLeft(pos) && this.isUp()){
+                            this.turno='N';
                             this.actualizar(pos,-9,aux);
                         }else{
-                            if(tab.tablero[pos-9].name.charAt(0)=='N' && this.isLeft(pos)){
+                            if(tab.tablero[pos-9].name.charAt(0)=='N' && this.isLeft(pos) && this.isUp()){
+                                this.turno='N';
                                 this.actualizar(pos,-9,aux);
                                 Negras.Piezas--;
                                 console.log('Equipo Negro: '+Negras.Piezas+' restantes');
@@ -820,10 +877,12 @@ class Game{
                                 break;
                             }else{console.log("No puedes realizar ese movimiento")}
                         };break;
-                        case 'arriba':if(tab.tablero[pos-8]==""){
+                        case 'arriba':if(tab.tablero[pos-8]=="" && this.isUp()){
+                            this.turno='N';
                             this.actualizar(pos,-8,aux);
                         }else{
-                            if(tab.tablero[pos-8].name.charAt(0)=='N'){
+                            if(tab.tablero[pos-8].name.charAt(0)=='N' && this.isUp()){
+                                this.turno='N';
                                 this.actualizar(pos,-8,aux);
                                 Negras.Piezas--;
                                 console.log('Equipo Negro: '+Negras.Piezas+' restantes');
@@ -832,9 +891,11 @@ class Game{
                             }else{console.log("No puedes realizar ese movimiento")}
                         };break;
                         case 'izquierda':if(tab.tablero[pos-1]=="" && this.isLeft(pos)){
+                            this.turno='N';
                             this.actualizar(pos,-1,aux);
                         }else{
                             if(tab.tablero[pos-1].name.charAt(0)=='N' && this.isLeft(pos)){
+                                this.turno='N';
                                 this.actualizar(pos,-1,aux);
                                 Negras.Piezas--;
                                 console.log('Equipo Negro: '+Negras.Piezas+' restantes');
@@ -843,9 +904,11 @@ class Game{
                             }
                         };break;
                         case 'derecha':if(tab.tablero[pos+1]=="" && this.isRight(pos)){
+                            this.turno='N';
                             this.actualizar(pos,+1,aux);
                         }else{
                             if(tab.tablero[pos+1].name.charAt(0)=='N' && this.isRight(pos)){
+                                this.turno='N';
                                 this.actualizar(pos,+1,aux);
                                 Negras.Piezas--;
                                 console.log('Equipo Negro: '+Negras.Piezas+' restantes');
@@ -853,10 +916,12 @@ class Game{
                                 break;
                             }else{console.log("No puedes realizar ese movimiento")}
                         };break;
-                        case 'abajo':if(tab.tablero[pos+8]==""){
+                        case 'abajo':if(tab.tablero[pos+8]=="" && this.isDown()){
+                            this.turno='N';
                             this.actualizar(pos,+8,aux);
                         }else{
-                            if(tab.tablero[pos+8].name.charAt(0)=='N'){
+                            if(tab.tablero[pos+8].name.charAt(0)=='N' && this.isDown()){
+                                this.turno='N';
                                 this.actualizar(pos,+8,aux);
                                 Negras.Piezas--;
                                 console.log('Equipo Negro: '+Negras.Piezas+' restantes');
@@ -1177,3 +1242,4 @@ tab.inicializar();
 tab.mostrarTablero();
 Blancas=new Player('Blanco');
 Negras=new Player('Negro');
+
