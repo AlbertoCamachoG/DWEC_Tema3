@@ -736,8 +736,8 @@ class Game{
                                 break;
                             }else{console.log("No puedes realizar ese movimiento")}
                         };break;
-                        case 'abajoD':if(tab.tablero[pos+7]=="" && this.isRight(pos)){
-                            this.actualizar(pos,+7,aux);
+                        case 'abajoD':if(tab.tablero[pos+9]=="" && this.isRight(pos)){
+                            this.actualizar(pos,+9,aux);
                         }else{
                             if(tab.tablero[pos+9].name.charAt(0)=='B' && this.isRight(pos)){
                                 this.actualizar(pos,+9,aux);
